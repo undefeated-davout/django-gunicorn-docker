@@ -6,7 +6,8 @@
 
 ```bash
 # 開発環境用起動
-docker-compose up -d --build
+# --build：再ビルド
+docker-compose up --build
 # 停止
 docker-compose down
 ```
