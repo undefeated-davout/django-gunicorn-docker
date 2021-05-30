@@ -13,7 +13,10 @@ docker-compose down
 
 ### 確認用URL（開発環境用起動）
 
-- [http://localhost:8000/polls/](http://localhost:8000/polls/)
+- Djangoサンプル
+  - [http://localhost:8000/django_sample/](http://localhost:8000/django_sample/)
+- Flaskサンプル
+  - [http://localhost:9876/](http://localhost:9876/)
 
 ## 本番環境
 
@@ -30,5 +33,9 @@ docker-compose -f docker-compose.prod.yml down
 
 ### 確認用URL（本番環境用起動）
 
-- [http://localhost:1337/staticfiles/sample.html](http://localhost:1337/staticfiles/sample.html)
-- [http://localhost:1337/polls/](http://localhost:1337/polls/)
+- 静的ページサンプル
+  - [http://localhost:1337/staticfiles/index.html](http://localhost:1337/staticfiles/index.html)
+- Djangoサンプル
+  - [http://localhost:1337/django/django_sample/](http://localhost:1337/django/django_sample/)
+- Flaskサンプル
+  - [http://localhost:1337/flask/](http://localhost:1337/django_sample/)

@@ -1,15 +1,14 @@
 version: "3.7"
 
 services:
-  # サービス名は自由に設定
-  django:
+  django_app:
     # appディレクトリの中から`Dockerfile`を探す
-    build: ./app
+    build: ./django_app
     # サービス起動後に入力されるコマンドを設定（ホットリロード）
     command: python manage.py runserver 0.0.0.0:8000
     # データを永続化させる場合の設定。`host:container`でパスを記載
     volumes:
-      - ./app/:/usr/src/app/
+      - ./django_app/:/usr/src/app/
     # 開放するポートを指定。`host:container`でポートを記載
     ports:
       - 8000:8000
@@ -18,3 +17,14 @@ services:
       # 1ならデバックモード
       - DEBUG=1
       - SECRET_KEY=hoge
+
+  flask_app:
+    build: ./flask_app
+    command: flask run --host=0.0.0.0 --port=9876
+    volumes:
+      - ./flask_app/:/usr/src/app/
+    ports:
+      - 9876:9876
+    environment:
+      - FLASK_APP=flask_app.py
+      - FLASK_DEBUG=1

@@ -2,12 +2,12 @@ version: "3.7"
 
 services:
   # サービス名は自由に設定
-  django:
+  django_app:
     # appディレクトリの中から`Dockerfile`を探す
-    build: ./app
+    build: ./django_app
     # サービス起動後に入力されるコマンドを設定（デーモン化）
     # ./app/djang_demo/wsgi.py の [application = get_wsgi_application()] を対象に起動している
-    command: gunicorn django_demo.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn django_admin_sample.wsgi:application --bind 0.0.0.0:8000
     # データを永続化させる場合の設定。`host:container`でパスを記載
     volumes:
       - static_volume:/usr/src/app/staticfiles
@@ -17,6 +17,16 @@ services:
     # 環境変数を指定
     env_file: .env
 
+  flask_app:
+    build: ./flask_app
+    command: gunicorn flask_app:app -c gunicorn_settings.py
+    volumes:
+      - ./flask_app/:/usr/src/app/
+    expose:
+      - 9876
+    environment:
+      - PORT=9876
+
   nginx:
     build: ./nginx
     volumes:
@@ -24,7 +34,8 @@ services:
     ports:
       - 1337:80
     depends_on:
-      - django
+      - django_app
+      - flask_app
 
 # トップレベルに書く「名前付きvolumes」は複数サービスから参照できる
 volumes:
