@@ -28,3 +28,10 @@ services:
     environment:
       - FLASK_APP=flask_app.py
       - FLASK_DEBUG=1
+
+  python_app:
+    build: ./python_app
+    restart: always
+    command: python sample_app.py
+    volumes:
+      - ./python_app/:/usr/src/app/
