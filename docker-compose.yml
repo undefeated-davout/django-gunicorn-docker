@@ -4,6 +4,7 @@ services:
   django_app:
     # appディレクトリの中から`Dockerfile`を探す
     build: ./django_app
+    restart: always
     # サービス起動後に入力されるコマンドを設定（ホットリロード）
     command: python manage.py runserver 0.0.0.0:8000
     # データを永続化させる場合の設定。`host:container`でパスを記載
@@ -20,6 +21,7 @@ services:
 
   flask_app:
     build: ./flask_app
+    restart: always
     command: flask run --host=0.0.0.0 --port=9876
     volumes:
       - ./flask_app/:/usr/src/app/
