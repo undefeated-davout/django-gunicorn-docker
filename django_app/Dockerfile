@@ -1,5 +1,4 @@
-# 公式からpython3.7 on alpine linuxイメージをpull
-FROM python:3.7-alpine
+FROM python:3.7-slim
 
 # 作業ディレクトリを設定
 WORKDIR /usr/src/app
@@ -9,13 +8,6 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 # Pythonが標準入出力をバッファリングすることを防ぐ
 ENV PYTHONUNBUFFERED 1
-
-# psycopg2のインストール
-RUN apk update \
-  && apk add --virtual build-deps gcc python3-dev musl-dev \
-  && apk add postgresql-dev \
-  && pip install psycopg2 \
-  && apk del build-deps
 
 # Pipenvをインストール
 RUN pip install --upgrade pip \
