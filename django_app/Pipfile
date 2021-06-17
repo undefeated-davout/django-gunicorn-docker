@@ -6,9 +6,22 @@ name = "pypi"
 [dev-packages]
 
 [packages]
-Django = "==2.2.3"
-gunicorn= "==19.9.0"
-numpy= "==1.20.3"
+Django = "*"
+django-celery = "*"
+django-bootstrap3 = "==9.1.0"
+django-jquery = "==3.1.0"
+django-jquery-ui = "==1.11.4.1"
+django-environ = "*"
+python-memcached = "*"
+python-dateutil = "*"
+pymongo = "==3.6.0"
+mod-wsgi = "*"
+requests = "*"
+gunicorn= "*"
+numpy= "*"
+certifi = "*"
+dateutils = "*"
+urllib3 = "*"
 
 [requires]
 python_version = "3.7"
